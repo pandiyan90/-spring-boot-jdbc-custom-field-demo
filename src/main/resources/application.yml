@@ -1,0 +1,15 @@
+server:
+  port: 8084
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/sampledb1
+    username: postgres
+    password: postGreSql
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    properties:
+      hibernate: 
+        jdbc:
+          lob:
+            non_contextual_creation: true
