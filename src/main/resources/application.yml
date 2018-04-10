@@ -2,14 +2,40 @@ server:
   port: 8084
 
 spring:
-  datasource:
-    url: jdbc:postgresql://localhost:5432/sampledb1
-    username: postgres
-    password: postGreSql
-    driver-class-name: org.postgresql.Driver
   jpa:
     properties:
       hibernate: 
         jdbc:
           lob:
             non_contextual_creation: true
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  profiles: 
+    active: postgres
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+---
+
+spring:
+  profiles: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/custom_field_db
+    username: postgres
+    password: postGreSql
+    driver-class-name: org.postgresql.Driver
+    platform: org.hibernate.dialect.PostgreSQL95Dialect
+
+---
+
+spring:
+  profiles: mysql
+  datasource:
+    url: jdbc:mysql://localhost:3307/custom_field_db?verifyServerCertificate=false&useSSL=false
+    username: root
+    password: mindzen
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: org.hibernate.dialect.MySQL5Dialect
+

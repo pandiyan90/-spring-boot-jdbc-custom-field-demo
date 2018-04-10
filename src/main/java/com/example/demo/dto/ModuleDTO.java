@@ -1,12 +1,13 @@
 package com.example.demo.dto;
 
+import javax.validation.constraints.NotNull;
+
 import lombok.Data;
 
 @Data
-public class Module {
+public class ModuleDTO {
 	
-	private Long moduleId;
-	
+	@NotNull
 	private String moduleName;
 	
 }
