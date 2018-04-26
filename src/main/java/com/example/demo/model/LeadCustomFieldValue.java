@@ -42,7 +42,7 @@ public class LeadCustomFieldValue {
 	private LocalDateTime createdOn;
 	
 	@Column(name="is_active")
-	private boolean isActive;
+	private Boolean isActive;
 
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="lead_id")

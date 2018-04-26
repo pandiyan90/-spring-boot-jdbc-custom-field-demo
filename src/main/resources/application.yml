@@ -1,6 +1,9 @@
 server:
   port: 8084
-
+  servlet:
+    session:
+      cookie:
+        name: SSO-SESSION
 spring:
   jpa:
     properties:
@@ -17,6 +20,46 @@ spring:
   jackson:
     serialization:
       fail-on-empty-beans: false
+  security:
+    oauth2:
+      client:
+        provider:
+          my-oauth-provider: 
+            user-name-attribute: sample
+            token-uri: http://localhost:8083/oauth/token
+            authorization-uri: http://localhost:8083/oauth/authorize
+            user-info-uri: http://localhost:8083/user/me
+    user:
+      name: admin
+      password: password
+
+  thymeleaf:
+    cache: false
+
+# i18n configuration
+  messages:
+    basename: messages
+    encoding: UTF-8
+    cache-duration: -1
+
+# Batch not in use
+#Batch Configuration
+#batch.initializer.enabled=false
+  batch:
+    job:
+      enabled: false
+
+#Spring Batch Configuration
+database:
+  to:
+    csv:
+      job:
+        cron: 5 * * * * *
+        export:
+          file:
+            header: LEAD_ID;EMAIL_ADDRESS;CREATED_ON
+            path: e:/leads.csv
+
 ---
 
 spring:
@@ -38,4 +81,3 @@ spring:
     password: mindzen
     driver-class-name: com.mysql.cj.jdbc.Driver
     platform: org.hibernate.dialect.MySQL5Dialect
-

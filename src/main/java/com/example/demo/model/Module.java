@@ -25,7 +25,7 @@ public class Module {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name="module_id", updatable=false, nullable=false)
+	@Column(name="module_id")
 	private Long moduleId;
 	
 	@Column(name="module_name", unique = true)
@@ -36,9 +36,9 @@ public class Module {
 	private LocalDateTime createdOn;
 	
 	@Column(name="is_active")
-	private boolean isActive;
+	private Boolean isActive;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
+/*	@OneToMany(cascade = CascadeType.ALL, mappedBy = "module")
 	private List<Lead> lead;
-
+*/
 }
